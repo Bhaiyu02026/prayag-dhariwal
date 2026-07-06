@@ -1,29 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// This explicitly marks the file as a valid Next.js server module handler
+// This GET function explicitly tells the Next.js compiler worker that this file is a valid server module
 export async function GET(request: NextRequest) {
   try {
-    // Extract the file target URL from the incoming query string parameters
     const { searchParams } = new URL(request.url);
     const fileUrl = searchParams.get('url');
 
     if (!fileUrl) {
       return NextResponse.json(
-        { error: 'Missing parameters: "url" operand required.' },
+        { error: 'Missing parameters: "url" required.' },
         { status: 400 }
       );
     }
 
-    // Fetch the binary packet chunk stream from your Supabase Storage Bucket
+    // Fetch the binary file packet data stream from your Supabase Storage Bucket
     const response = await fetch(fileUrl);
-    if (!response.ok) throw new Error('Failed to resolve asset payload from remote storage host.');
+    if (!response.ok) throw new Error('Failed to fetch asset payload from remote storage host.');
 
     const blob = await response.blob();
-
-    // Extract filename from the path to present to the user's OS filesystem
     const filename = fileUrl.split('/').pop() || 'application-build.exe';
 
-    // Return the binary data stream with explicit browser forcing download headers
+    // Stream binary payload with headers that force a browser download dialog
     return new NextResponse(blob, {
       status: 200,
       headers: {
