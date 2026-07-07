@@ -69,22 +69,17 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full border-b transition-all duration-300 font-mono text-xs ${
-        isScrolled
+      className={`fixed top-0 z-50 w-full border-b transition-all duration-300 font-mono text-xs ${isScrolled
           ? 'border-gray-900 bg-[#030407]/80 backdrop-blur-md h-16 shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
           : 'border-transparent bg-transparent h-20'
-      }`}
+        }`}
     >
       <div className="mx-auto max-w-7xl h-full px-6 flex items-center justify-between">
 
         {/* Logo Element with Custom Core Pulse */}
-        <Link
-          href="/"
-          className="flex items-center gap-3 group focus:outline-none rounded-xl p-1"
-        >
-          <div className="relative">
-            <div className="h-2.5 w-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.9)] transition-transform duration-300 group-hover:scale-110" />
-            <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-blue-400 animate-ping opacity-20" />
+        <Link href="/" className="flex items-center gap-3 group focus:outline-none rounded-xl p-1">
+          <div className="relative w-6 h-6 rounded-lg overflow-hidden border border-gray-900 bg-black shrink-0 shadow-[0_0_10_rgba(59,130,246,0.2)] transition-transform duration-300 group-hover:scale-105">
+            <img src="/icon.png" alt="PD Core Logo" className="w-full h-full object-cover" />
           </div>
 
           <div className="text-[13px] font-bold tracking-[2px] text-white group-hover:text-blue-400 transition-colors uppercase">
@@ -111,11 +106,10 @@ export default function Navbar() {
           {/* Secure Architect Control Panel Trigger Anchor */}
           <Link
             href="/admin"
-            className={`group relative px-4 py-2.5 rounded-xl border font-bold tracking-wider transition-all flex items-center gap-2 overflow-hidden ${
-              sessionActive
+            className={`group relative px-4 py-2.5 rounded-xl border font-bold tracking-wider transition-all flex items-center gap-2 overflow-hidden ${sessionActive
                 ? 'bg-emerald-950/20 border-emerald-900/50 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.05)]'
                 : 'bg-[#06080d] border-gray-900 text-gray-400 hover:text-white hover:border-blue-900/40'
-            }`}
+              }`}
           >
             {sessionActive ? (
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
@@ -139,9 +133,8 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu Overlays */}
       <div
-        className={`md:hidden border-b border-gray-900/80 bg-[#030407]/95 backdrop-blur-xl transition-all duration-300 overflow-hidden shadow-2xl ${
-          isOpen ? 'max-h-72 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
-        }`}
+        className={`md:hidden border-b border-gray-900/80 bg-[#030407]/95 backdrop-blur-xl transition-all duration-300 overflow-hidden shadow-2xl ${isOpen ? 'max-h-72 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+          }`}
       >
         <div className="px-6 py-6 space-y-5 tracking-widest uppercase border-t border-gray-950">
           {navLinks.map((link) => (
@@ -158,11 +151,10 @@ export default function Navbar() {
           <Link
             href="/admin"
             onClick={() => setIsOpen(false)}
-            className={`w-full py-3 rounded-xl font-bold tracking-widest text-center flex items-center justify-center gap-2 border transition-all ${
-              sessionActive
+            className={`w-full py-3 rounded-xl font-bold tracking-widest text-center flex items-center justify-center gap-2 border transition-all ${sessionActive
                 ? 'bg-emerald-950/20 border-emerald-900/40 text-emerald-400'
                 : 'bg-blue-600 hover:bg-blue-500 text-white border-transparent'
-            }`}
+              }`}
           >
             {sessionActive ? <ShieldCheck className="w-3.5 h-3.5" /> : <Terminal className="w-3.5 h-3.5" />}
             {sessionActive ? 'ACCESS NODE ACTIVE' : 'DECRYPT CONTROL PANEL'}

@@ -3,9 +3,13 @@ import "./globals.css";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import GlowBackground from "@/components/ui/GlowBackground"; // Import your new component
 
-export const metadata: Metadata = {
-  title: "Prayag Dhariwal | Portfolio & Build Hub",
-  description: "Personal distribution and storage hub for software builds, system utilities, and academic tracking.",
+export const metadata = {
+  title: 'Prayag Dhariwal // Architect Core',
+  description: 'Software systems engineer portfolio matrix.',
+  // Injecting custom Web App Apple titles natively through metadata parameters
+  other: {
+    'apple-mobile-web-app-title': 'MyWebSite',
+  },
 };
 
 export default function RootLayout({
