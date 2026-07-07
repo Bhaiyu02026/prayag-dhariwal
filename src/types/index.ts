@@ -1,11 +1,23 @@
 export interface Project {
-  id: string;
-  created_at?: string;
+  id: number | string; // Supporting both auto-incrementing numbers and static placeholder string IDs
   title: string;
+  category: string;
   description: string;
   status: 'Completed' | 'In Progress' | 'Future Concept';
-  category: string;
   tech_stack: string[];
-  file_url?: string;   // The link to download your compiled .exe or .apk
-  source_url?: string; // Optional GitHub or source code link
+  file_url: string;
+  version: string;
+  icon_url?: string;
+  screenshots?: string[];
+  is_restricted: boolean; // 💻 CRITICAL NEW LINE: Injects the missing schema type parameter
+}
+
+export interface RoadmapMilestone {
+  id: number;
+  step: string;
+  title: string;
+  location: string;
+  description: string;
+  status: 'current' | 'upcoming' | 'future';
+  sequence_order: number;
 }
